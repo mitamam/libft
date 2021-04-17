@@ -25,7 +25,7 @@ int	count_words(char const *s, char c)
 			i++;
 		while (s[i] == c)
 			i++;
-		if (s[i])
+		if (s[i] - 1)
 			qty++;
 	}
 	return (qty);
