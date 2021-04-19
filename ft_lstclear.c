@@ -6,15 +6,15 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/13 16:34:30 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 11:36:27 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	re_lstclear(t_list *lst, void(*del)(void *))
+static void	re_lstclear(t_list *lst, void(*del)(void *))
 {
-	if (lst->next == NULL)
+	if (!lst->next)
 	{
 		ft_lstdelone(lst, del);
 		return ;
@@ -25,9 +25,9 @@ void	re_lstclear(t_list *lst, void(*del)(void *))
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (!del)
+	if (!lst && !del)
 		return ;
-	if (lst[0] != (void *)0)
-		re_lstclear(lst[0], del);
+	if (*lst)
+		re_lstclear(*lst, del);
 	*lst = NULL;
 }

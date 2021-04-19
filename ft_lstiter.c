@@ -6,7 +6,7 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/13 16:35:02 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 11:25:15 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (lst == (void *)0)
+	t_list	*node;
+
+	if (!(lst && f))
 		return ;
-	if (lst->next != NULL)
+	node = lst;
+	while (node)
 	{
-		f(lst->content);
-		return (ft_lstiter(lst->next, f));
+		f(node->content);
+		node = node->next;
 	}
-	f(lst->content);
-	return ;
 }

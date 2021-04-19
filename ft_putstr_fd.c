@@ -6,7 +6,7 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/13 17:21:46 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/18 23:53:13 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	len;
-
-	len = 0;
-	if (s == NULL)
+	if (!s)
 		return ;
-	while (s[len] != '\0')
-		len++;
-	write(fd, s, sizeof(char) * len);
+	write(fd, s, sizeof(char) * ft_strlen(s));
 }

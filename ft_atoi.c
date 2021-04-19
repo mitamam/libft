@@ -6,19 +6,19 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/13 14:24:42 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 10:39:54 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	check_overflow(long num, char str)
+static int	check_overflow(long num, char str)
 {
 	long	ov_div;
 	long	ov_mod;
 
-	ov_div = LONG_MAX / 10;
-	ov_mod = LONG_MAX % 10;
+	ov_div = __LONG_MAX__ / 10;
+	ov_mod = __LONG_MAX__ % 10;
 	if (num > ov_div)
 		return (-1);
 	else if (num == ov_div && ((int)str - '0') > ov_mod)

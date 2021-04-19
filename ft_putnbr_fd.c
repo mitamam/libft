@@ -6,7 +6,7 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/15 17:23:17 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 00:20:21 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	calc_putnbr_fd(long num, int digit, int minus, int fd)
 	char	s[256];
 
 	i = 0;
-	if (minus)
-		digit++;
 	if (minus)
 	{
 		s[i] = '-';
@@ -41,7 +39,7 @@ void	ft_putnbr_fd(int n, int fd)
 	int		digit;
 	int		minus;
 
-	num = n;
+	num = (long)n;
 	digit = 0;
 	minus = 0;
 	if (num == 0)
@@ -50,12 +48,13 @@ void	ft_putnbr_fd(int n, int fd)
 	{
 		num *= -1;
 		minus = 1;
+		digit++;
 	}
 	while (num > 0)
 	{
 		num /= 10;
 		digit++;
 	}
-	num = n;
+	num = (long)n;
 	calc_putnbr_fd(num, digit, minus, fd);
 }

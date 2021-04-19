@@ -12,63 +12,59 @@
 
 #include "libft.h"
 
-int	count_words(char const *s, char c)
+static void	*free_memory(char **newstr, int word_count)
 {
-	int	i;
-	int	qty;
+	while (--word_count > 0)
+		free(newstr[word_count]);
+	free(newstr);
+	return (NULL);
+}
 
+static char	*ft_strndup(const char *s1, size_t n, size_t i)
+{
+	char		*s2;
+	size_t		j;
+
+	j = 0;
+	if (!s1)
+		return (NULL);
+	s2 = (char *)malloc(sizeof(char) * (n + 1));
+	if (!s2)
+		return (NULL);
+	while (j < n)
+	{
+		s2[j] = s1[i + j];
+		j++;
+	}
+	s2[j] = '\0';
+	return (s2);
+}
+
+static char	**split_words(char **newstr, char const *s, char c, int qty)
+{
+	size_t	i;
+	size_t	word_count;
+	size_t	split;
+
+	word_count = 0;
 	i = 0;
-	qty = 0;
-	while (s[i])
+	while (ft_strlen(s) > i)
 	{
-		while (s[i] && s[i] != c)
-			i++;
-		while (s[i] == c)
-			i++;
-		if (s[i] - 1)
-			qty++;
-	}
-	return (qty);
-}
-
-int	malloc_word(char **newstr, int word_count, int split)
-{
-	newstr[word_count] = (char *)malloc(sizeof(char) * (split + 1));
-	if (!newstr[word_count])
-	{
-		while (word_count-- >= 0)
-			free(newstr[word_count]);
-		return (1);
-	}
-	return (0);
-}
-
-char	**split_words(char **newstr, char const *s, char c, int word_count)
-{
-	int	j;
-	int	split;
-
-	while (*s)
-	{
-		split = 1;
-		j = 0;
-		while (*s == c)
-			s++;
-		while (*s && *s != c)
+		split = 0;
+		if (s[i] != c)
 		{
-			s++;
-			split++;
-		}
-		if (split != 1)
-		{
-			if (malloc_word(newstr, word_count, split))
-				return (NULL);
-			while (--split > 0)
-				newstr[word_count][j++] = *(s - split);
-			newstr[word_count][j] = '\0';
+			while (s[i + split] && s[i + split] != c)
+				split++;
+			newstr[word_count] = ft_strndup(s, split, i);
+			if (!newstr[word_count])
+				return (free_memory(newstr, word_count));
 			word_count++;
 		}
+		i += split + 1;
 	}
+	if (word_count == 0)
+		newstr[word_count] = ft_strndup("\0", 0, 0);
+	newstr[qty] = NULL;
 	return (newstr);
 }
 
@@ -76,23 +72,25 @@ char	**ft_split(char const *s, char c)
 {
 	char	**newstr;
 	int		qty;
-	int		word_count;
+	int		i;
 
-	word_count = 0;
 	qty = 0;
-	if (s == NULL)
+	i = 0;
+	if (!s)
 		return (NULL);
-	if (c != '\0')
-		qty = count_words(s, c);
-	if (!qty)
-		qty = 1;
-	newstr = (char **)malloc(sizeof(char *) * qty + 1);
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			while (s[i] != c && s[i])
+				i++;
+			qty++;
+		}
+		else
+			i++;
+	}
+	newstr = (char **)malloc(sizeof(char *) * (qty + 1));
 	if (!newstr)
 		return (NULL);
-	if (c != '\0')
-		newstr = split_words(newstr, s, c, word_count);
-	if (newstr == NULL)
-		return (NULL);
-	newstr[qty] = NULL;
-	return (newstr);
+	return (split_words(newstr, s, c, qty));
 }

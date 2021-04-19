@@ -6,13 +6,13 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/13 16:35:32 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 10:04:17 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*re_lstlast(t_list *lst)
+static t_list	*re_lstlast(t_list *lst)
 {
 	if (lst->next == NULL)
 		return (lst);
@@ -21,7 +21,7 @@ t_list	*re_lstlast(t_list *lst)
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (lst != (void *)0)
+	if (lst)
 		return (re_lstlast(lst));
-	return ((void *)0);
+	return (NULL);
 }

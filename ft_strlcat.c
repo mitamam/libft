@@ -6,7 +6,7 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/13 21:00:02 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 22:06:32 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	d_len;
 	size_t	s_len;
 
-	d_len = 0;
 	s_len = 0;
-	while (dst[d_len] != '\0')
-		d_len++;
-	if (dstsize < d_len)
+	d_len = ft_strlen(dst);
+	if (dstsize <= d_len)
 	{
-		while (src[s_len] != '\0')
-			s_len++;
+		s_len = ft_strlen(src);
 		return (dstsize + s_len);
 	}
 	while (d_len < dstsize - 1 && dstsize > 0 && src[s_len])

@@ -6,13 +6,13 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/13 21:20:27 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 23:08:09 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	check_words(char c, char const *set)
+static int	check_words(char c, char const *set)
 {
 	size_t	i;
 
@@ -26,7 +26,7 @@ int	check_words(char c, char const *set)
 	return (0);
 }
 
-char	*trim_str(size_t begin, size_t end, size_t len, char const *s1)
+static char	*trim_str(size_t begin, size_t end, size_t len, char const *s1)
 {
 	char	*trimstr;
 	size_t	i;
@@ -63,7 +63,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	begin = 0;
 	end = 0;
 	len = 0;
-	if (s1 == NULL || set == NULL)
+	if (!s1 || !set)
 		return (NULL);
 	len = ft_strlen(s1);
 	end = len;

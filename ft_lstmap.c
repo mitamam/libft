@@ -6,7 +6,7 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:30 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/14 20:17:21 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 11:25:35 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*newlst;
 	t_list	*first;
 
-	if (!lst)
+	if (!(lst && f))
 		return (NULL);
 	first = ft_lstnew(f(lst->content));
 	if (!first)

@@ -6,7 +6,7 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/13 21:02:25 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 11:19:28 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	uns2 = (unsigned char *)s2;
 	while (i < n && (uns1[i] != '\0' || uns2[i] != '\0'))
 	{
-		if (uns1[i] < uns2[i] || uns1[i] > uns2[i])
+		if (uns1[i] != uns2[i])
 			return (uns1[i] - uns2[i]);
 		i++;
 	}

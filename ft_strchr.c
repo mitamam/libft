@@ -6,7 +6,7 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/13 20:21:33 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 10:49:12 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strchr(const char *s, int c)
 	unsigned char	char_c;
 	int				i;
 
-	char_c = (unsigned char)c;
+	char_c = (char)c;
 	i = 0;
 	while (s[i] != '\0')
 	{

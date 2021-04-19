@@ -6,7 +6,7 @@
 #    By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/11 16:44:44 by mmasuda           #+#    #+#              #
-#    Updated: 2021/04/15 12:41:23 by mmasuda          ###   ########.fr        #
+#    Updated: 2021/04/19 11:54:01 by mmasuda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,33 +23,27 @@ B_SRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		 ft_lstmap.c
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-M_OBJS = ${SRCS:%.c=%.o}
-B_OBJS = ${B_SRCS:%.c=%.o}
+OBJS = $(SRCS:%.c=%.o)
+B_OBJS = $(SRCS:%.c=%.o) $(B_SRCS:%.c=%.o)
 RM = rm -f
 
-ifdef WITH_BONUS
-	OBJS = $(M_OBJS) $(B_OBJS)
-else
-	OBJS = $(M_OBJS)
-endif
-
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME): ${OBJS}
-	ar rcs ${NAME} ${OBJS}
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
-all: ${NAME}
+all: $(NAME)
 
 clean:
-	${RM} ${M_OBJS} ${B_OBJS}
+	$(RM) $(OBJS) $(B_OBJS)
 
 fclean: clean
-	${RM} ${NAME}
+	$(RM) $(NAME)
 
 re: fclean all
 
-bonus:
-	$(MAKE) WITH_BONUS=1 all
+bonus: $(B_OBJS)
+	ar rcs $(NAME) $(B_OBJS)
 
 .PHONY: all clean fclean re

@@ -6,17 +6,14 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 16:44:50 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/15 14:49:27 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/19 10:38:02 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# define LONG_MAX 0x7FFFFFFFFFFFFFFF
-
 # include	<stdlib.h>
-# include	<fcntl.h>
 # include	<unistd.h>
 
 typedef struct s_list
@@ -62,6 +59,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_substr(char const *s, unsigned int start,
 					size_t len);
+
 t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 int				ft_lstsize(t_list *lst);
@@ -70,15 +68,6 @@ void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
-
-int				check_overflow(long num, char str);
-char			*ft_strdup(const char *s1);
-int				count_words(char const *s, char c);
-char			**split_words(char **newstr, char const *s,
-					char c, int word_count);
-int				re_count_elem(t_list *lst, int elem_qty);
-t_list			*re_lstlast(t_list *lst);
-void			re_lstclear(t_list *lst, void(*del)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
 #endif
