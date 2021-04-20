@@ -6,7 +6,7 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/19 23:08:09 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/20 09:58:36 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = len;
 	while (check_words(s1[begin], set))
 		begin++;
-	while (check_words(s1[end - 1], set))
+	while (begin != end && check_words(s1[end - 1], set))
 		end--;
 	return (trim_str(begin, end, len, s1));
 }
