@@ -6,13 +6,13 @@
 /*   By: mmasuda <mmasuda@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 22:30:20 by mmasuda           #+#    #+#             */
-/*   Updated: 2021/04/19 00:20:21 by mmasuda          ###   ########.fr       */
+/*   Updated: 2021/04/20 11:14:50 by mmasuda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	calc_putnbr_fd(long num, int digit, int minus, int fd)
+static void	calc_putnbr_fd(long num, int digit, int minus, int fd)
 {
 	int		i;
 	char	s[256];
