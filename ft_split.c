@@ -14,8 +14,14 @@
 
 static void	*free_memory(char **newstr, int word_count)
 {
-	while (--word_count > 0)
-		free(newstr[word_count]);
+	int	i;
+
+	i = 0;
+	while (i < word_count)
+	{
+		free(newstr[i]);
+		i++;
+	}
 	free(newstr);
 	return (NULL);
 }
@@ -63,7 +69,7 @@ static char	**split_words(char **newstr, char const *s, char c, int qty)
 		i += split + 1;
 	}
 	if (word_count == 0)
-		newstr[word_count] = ft_strndup("\0", 0, 0);
+		newstr[word_count] = ft_strndup(NULL, 0, 0);
 	newstr[qty] = NULL;
 	return (newstr);
 }
@@ -89,6 +95,8 @@ char	**ft_split(char const *s, char c)
 		else
 			i++;
 	}
+	if (qty == 0)
+		qty = 1;
 	newstr = (char **)malloc(sizeof(char *) * (qty + 1));
 	if (!newstr)
 		return (NULL);

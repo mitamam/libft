@@ -14,11 +14,9 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	size_t		i;
 	size_t		bite_size;
 	void		*buf;
 
-	i = 0;
 	if (count == 0)
 		count = 1;
 	if (size == 0)
